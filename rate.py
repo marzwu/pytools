@@ -1,6 +1,8 @@
 from random import random
 import pandas as pd
 import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
 
 
 def get_level(rates):
@@ -41,10 +43,20 @@ if __name__ == '__main__':
 
         _min = _cfg[level * 2]
         _max = _cfg[level * 2 + 1]
-        a = 1.0 / int(random() * 1000 + 1)
-        reward = (_min + (_max - _min) * a) * getmin
-        reward = int(max(getmin, min(getmax, reward)))
-        rewards.append(reward)
+
+        while True:
+            p = random() * 1000 + 1
+            if p <= 950:
+                a = 1 / 1000000 * (p - 100) ** 2
+            else:
+                a = 0.94 * (p - 950) ** 2 / 2500
+            t = (_min + (_max - _min) * a) * getmin + random() * (-80) + 10
+            t = int(max(getmin, min(getmax, t)))
+
+            if t != getmin and t != getmax:
+                break
+
+        rewards.append(t)
 
     print(levels)
     print(rewards)
@@ -59,12 +71,25 @@ if __name__ == '__main__':
     print()
 
     nrewards = np.array(rewards)
+    keys = []
+    counts = []
     percents = []
     for x in reward_key:
         x__sum = (nrewards == x).sum()
         percent = round(x__sum / 10000 * 100, ndigits=2)
+
+        keys.append(x)
+        counts.append(x__sum)
         percents.append(percent)
-        print(x, x__sum, '{}%'.format(percent))
+
+        print('{}   {}  {}%'.format(x, x__sum, percent))
+
+    # 画图
+    matplotlib.rcParams['axes.unicode_minus'] = False
+    fig, ax = plt.subplots()
+    ax.plot(np.array(keys), np.array(counts), 'o')
+    ax.set_title('Using hypen instead of unicode minus')
+    plt.show()
 
     sum = 0
     for i in range(5):
