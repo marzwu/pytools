@@ -19,8 +19,8 @@ def get_level(rates):
 
 
 if __name__ == '__main__':
-    hist = pd.read_csv(r'E:\workspace\SAServer\mainVersion\bin\dat\cfg\ZCJB.csv').head(1)
-    cfg = list(pd.read_csv(r'E:\workspace\SAServer\mainVersion\bin\dat\cfg\ConfigValue.csv').tail(1)['content'])[0]
+    hist = pd.read_csv(r'E:\workspace\SAServer\mainVersion\bin\dat\cfg\ZCJB.csv')
+    cfg = list(pd.read_csv(r'E:\workspace\SAServer\mainVersion\bin\dat\cfg\ConfigValue.csv').tail(2)['content'])[0]
     cfg = cfg.split(';')
     _cfg = []
     for x in cfg:
@@ -38,23 +38,22 @@ if __name__ == '__main__':
         level = get_level(rates)
         levels.append(level)
 
-        getmin = list(hist['getMin'])[0]
-        getmax = list(hist['getMax'])[0]
+        getmin = list(hist['getMin'])[3]
+        getmax = list(hist['getMax'])[3]
 
         _min = _cfg[level * 2]
         _max = _cfg[level * 2 + 1]
 
-        while True:
-            p = random() * 1000 + 1
-            if p <= 950:
-                a = 1 / 1000000 * (p - 100) ** 2
-            else:
-                a = 0.94 * (p - 950) ** 2 / 2500
-            t = (_min + (_max - _min) * a) * getmin + random() * (-80) + 10
-            t = int(max(getmin, min(getmax, t)))
+        p = random() * 1000 + 1
+        if p <= 950:
+            a = 1 / 1000000 * (p - 100) ** 2
+        else:
+            a = 0.94 * (p - 950) ** 2 / 2500
+        t = (_min + (_max - _min) * a) * getmin + random() * (-80) + 10
+        t = int(max(getmin, min(getmax, t)))
 
-            if t != getmin and t != getmax:
-                break
+        if t == getmin:
+            t = t * (random()*100 + 1100) / 1000
 
         rewards.append(t)
 
@@ -88,7 +87,7 @@ if __name__ == '__main__':
     matplotlib.rcParams['axes.unicode_minus'] = False
     fig, ax = plt.subplots()
     ax.plot(np.array(keys), np.array(counts), 'o')
-    ax.set_title('Using hypen instead of unicode minus')
+    ax.set_title('ZCJB rate')
     plt.show()
 
     sum = 0
