@@ -1,6 +1,6 @@
 start "" "C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\devenv.exe"
 
-start "" "D:\Program Files (x86)\JetBrains\IntelliJ IDEA 2016.3\bin\idea.exe"
+start "" "D:\Program Files (x86)\JetBrains\Gogland 163.10615.22\bin\gogland.exe"
 
 start "" "D:\Program Files (x86)\Atlassian\SourceTree\SourceTree.exe"
 
