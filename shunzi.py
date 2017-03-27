@@ -1,3 +1,6 @@
+import datetime
+
+
 def is_shunzi(s):
     temp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1]
     mark = [0 for i in range(len(temp))]
@@ -59,3 +62,11 @@ if __name__ == '__main__':
             else:
                 data.append(int(i))
         print("{}\t{}".format(is_shunzi(data), s, data))
+
+    # 一亿次
+    now = datetime.datetime.now()
+    i = 0
+    while i < 1e8:
+        i += 1
+        is_shunzi([1, 2, 3, 4, 5])
+    print(datetime.datetime.now() - now)
