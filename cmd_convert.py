@@ -18,7 +18,11 @@ def setText(aString):
 
 
 while True:
-    raw = int(input('>'))
-    output = '((0x0100 * {}) + {}),//{}'.format(raw // 256, raw % 256, raw)
-    print(output)
-    setText(output)
+    raw = input('>')
+    if ' ' in raw:
+        m, c = raw.split(' ')
+        print(int(m) * 256 + int(c))
+    else:
+        raw = int(raw)
+        output = '((0x0100 * {}) + {}),//{}'.format(raw // 256, raw % 256, raw)
+        print(output)
