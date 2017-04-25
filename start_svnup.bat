@@ -16,3 +16,4 @@ svn up
 cd E:\workspace\SEServer\mainVersion\bin\dat
 svn up
 
+cd e:\github\tools
