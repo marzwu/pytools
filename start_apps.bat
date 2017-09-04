@@ -9,3 +9,4 @@ start "" "D:\Program Files\Sublime Text 3\sublime_text.exe"
 start "" "D:\Program Files (x86)\JetBrains\IntelliJ IDEA 2017.1\bin\idea64.exe"
 
 start "" "D:\Program Files (x86)\JetBrains\PyCharm 2016.3.1\bin\pycharm64.exe"
+start "" "D:\Program Files (x86)\FlashDevelop\FlashDevelop.exe"

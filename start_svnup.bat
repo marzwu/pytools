@@ -1,3 +1,17 @@
+cd E:\workspace\SEWeb
+svn up
+
+cd E:\workspace\SERes\ClientSwc
+svn up
+
+cd E:\workspace\SERes\devVersion
+::svn cleanup
+svn up
+
+cd E:\workspace\SERes\ZLRes\ZLOrgRes_full
+::svn cleanup
+svn up
+
 cd E:\workspace\SAClient\mainVersion
 svn up
 
